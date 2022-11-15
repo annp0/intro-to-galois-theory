@@ -1,0 +1,82 @@
+\section{Algebraic Extensions}
+\begin{remark}
+Suppose $F$ is a field. The following theorem is listed without proof since it is well-known.
+\end{remark}
+\begin{proposition}
+    If $F$ is a finite field, then $F\backslash\{0\}$ is a cyclic group.
+\end{proposition}
+\begin{theorem}
+        $F[x]$ is an Euclid ring, therefore $F[x]$ is a PID.
+\end{theorem}
+\begin{proposition}
+    Give $f(x)\in F[x]$ and $a\in F$, $(x-a)|f(x)$ iff $f(a)=0$.
+\end{proposition}
+\begin{remark}
+    Such $a$ in the above proposition is called a root of $f(x)\in F$.
+\end{remark}
+\begin{definition}[Field Extensions]
+    Give a set $S$, 
+    $$F[S]=\{\sum_{i_1,\cdots,i_n\ge 0}^{<\infty}a_{i_1\cdots i_n} a_1^{i_1}\cdots a_n^{i_n}, i_1\cdots i_n\in\mathbb{N},a_1\cdots a_n\in S, a_{i_1\cdots i_n}\in F\}$$
+    the fraction field of $F[S]$ is denoted by $F(S)$. $F(S)$ is the smallest field containing $F\cup S$. 
+\end{definition}
+\begin{remark}
+    Give an element $\alpha\in F(S)\backslash F$, if $\alpha$ is a root of a polynomial $f(x)\in F[x]$, then $\alpha$ is called an algebraic element.
+\end{remark}
+\begin{proposition}
+    If $S=S_1\cup S_2$, then $F(S)=F(S_1)(S_2)$
+\end{proposition}
+\begin{proof}
+    Obviously $F(S)\subset F(S_1)(S_2)$. Conversely, since $F(S_1)\subset F(S)$ and $S_2\subset F(S)$, $F(S_1)(S_2)\subset F(S)$.
+\end{proof}
+\begin{definition}[Algebraic Extensions]
+    $F(S)$ is a algebraic extension when $S$ is a finite collection of algebraic elements over $F$.
+\end{definition}
+\begin{remark}
+    Give $\alpha$ an algebraic element.
+\end{remark}
+\begin{proposition}
+    $F(\alpha)=F[\alpha]\cong F[x]/\left<p(x)\right>$
+\end{proposition}
+\begin{proof}
+    Let $I=\{f(x)\in F[x]:f(\alpha)=0\}=\left<p(x)\right>$. Obviously $F[\alpha]$ is a integral domain, therefore $p(x)$ is prime, $I$ is maximal, $F[\alpha]$ is a field.
+\end{proof}
+\begin{remark}
+    The irreducible polynomial $p(x)$ above is unique by some unit in $F$. Let the coefficient of the highest degree term be $1$, denote this polynomial $\mathrm{Irr}(\alpha,F)$.
+\end{remark}
+\begin{definition}[Degree]
+    $\mathrm{deg}(\alpha,F)=\mathrm{deg}(\mathrm{Irr}(\alpha,F))$.
+\end{definition}
+\begin{proposition}
+    Suppose $\mathrm{deg}(\alpha,F)=n$, then $F(\alpha)=\mathrm{span}_F\{1,\alpha,\cdots,\alpha^{n-1}\}$.
+\end{proposition}
+\begin{proof}
+    $\forany f(x)\in F[x]$, $\exist q(x), r(x)$ such that
+    $$
+    f(x)=q(x)\mathrm{Irr}(\alpha, F)+r(x),\quad \mathrm{deg}\,r(x)<n
+    $$
+    therefore $f(\alpha)=r(\alpha)$. Also, $1,\alpha,\cdots,\alpha^{n-1}$ are linearly indepedent.
+\end{proof}
+\begin{definition}
+    Suppose field $K$, $F\subset K$. Then $K$ is a vector space over $F$, denote the dimension of this vector space $[K:F]$.
+\end{definition}
+\begin{proposition}
+    $[F(\beta):F]<\infty$ iff $\beta$ is an algebraic element.
+\end{proposition}
+\begin{proof}
+    This follows immediately after writing down the basis of $F(\beta)$ as a vector space over $F$.
+\end{proof}
+\begin{proposition}
+    Suppose field $K$, $E$ with $F\subset E\subset K$. Then
+    $$
+    [K:F]=[K:E][E:F]
+    $$
+\end{proposition}
+\begin{proof}
+    This could be easily seen by directly writing down the basis of $K$ as a vector space over $F$.
+\end{proof}
+\begin{proposition}
+    Suppose $K$ a field with $[K:F]<\infty$. Then $\exist \alpha_1,\cdots\alpha_n$ algebraic elements in $K$, and $K=F(\alpha_1,\cdots,\alpha_n)$.
+\end{proposition}
+\begin{proof}
+    Pick any element $\alpha_1\in K\backslash F$. Then $[K:F(\alpha_1)]\le[K:F]$. If the equality is taken, the proof is done. Otherwise repeat this process, which obviously must be done in finite steps.
+\end{proof}

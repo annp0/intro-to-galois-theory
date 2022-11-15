@@ -1,0 +1,69 @@
+\section{Normal Extensions and Separable Extensions}
+\begin{definition}[Normal Extensions]
+    An algebraic extension $K$ is called a normal extension of $F$ iff $\forany p(x)\in F[x]$ such that $p(x)$ is irreducible, if $p(x)$ has one root in $K$, then $p(x)$ splits over $K$.
+\end{definition}
+\begin{proposition}
+    Give $F\subset K$ fields, $K$ is a normal extension of $F$ iff $K$ is a splitting field of some polynomial in $F[x]$.
+\end{proposition}
+\begin{proof}
+    Let $K=F(\alpha_1,\cdots,\alpha_n)$ and $f(x)=\mathrm{Irr}(\alpha_1,F)\cdots \mathrm{Irr}(\alpha_n,F)$, since $K$ is a normal extension $f(x)=(x-\beta_1)\cdots(x-\beta_t)\in K$. Therefore $K$ is the splitting field of $f(x)$. Conversely, let $K$ be the spliting field of $f(x)$. Then let $p(x)\in F[x]$ and $\exist\alpha\in K$, $p(\alpha)=0$. Let $E$ be the splitting field of $p(x)\in K[x]$, and $g(x)=f(x)p(x)$, then $E$ is the splitting field of $f(x),g(x)\in F[x]$. Let $\beta\in E$ a root of $p(x)$, Then $\tau:F(\alpha)\to F(\beta),\alpha\mapsto\beta$ can be extend to an isomorphism of $E$ with $\tau|_F=\mathrm{id}$. Then $\tau(K)=K$, therefore $\beta\in K$, the proof is done by selecting $\beta$.
+    % https://q.uiver.app/?q=WzAsNSxbMCwxLCJGIl0sWzEsMCwiRihcXGFscGhhKSJdLFsxLDIsIkYoXFxiZXRhKSJdLFszLDEsIkUiXSxbMiwxLCJLIl0sWzEsMCwiXFxhbHBoYSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCJcXGJldGEiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwzLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNCwiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+    \[\begin{tikzcd}
+        & {F(\alpha)} \\
+        F && K & E \\
+        & {F(\beta)}
+        \arrow["\alpha"', no head, from=1-2, to=2-1]
+        \arrow["\beta"', no head, from=2-1, to=3-2]
+        \arrow[no head, from=2-3, to=2-1]
+        \arrow[no head, from=2-3, to=2-4]
+        \arrow[no head, from=3-2, to=2-4]
+        \arrow[no head, from=1-2, to=2-3]
+    \end{tikzcd}\]
+\end{proof}
+\begin{remark}
+    The normal extension of a normal extension of $F$ is not necessarily normal over $F$.
+\end{remark}
+\begin{definition}[Separable Polynomials]
+    $f(x)\in F[x]$ is separable iff every its irreducible factor has no repeated roots in its splitting field.
+\end{definition}
+\begin{proposition}
+    If $\mathrm{ch}\,F=0$, then $\forany f(x)\in F[x]$, $f(x)$ is separable.
+\end{proposition}
+\begin{proof}
+    For each of its irreducible factor $p(x)$, consider its derivative $p'(x)$. It is easy to see $(p'(x),p(x))=1$ when $p(x)$ has no repeated roots. If $F$ is of characteristic $0$, then obviously $(p'(x),p(x))=1$.
+\end{proof}
+\begin{definition}[Separable Elements]
+    $\alpha$ is called separable over $F$ iff $\mathrm{Irr}(\alpha,F)$ is separable.
+\end{definition}
+\begin{proposition}
+    Every finite separable extension of $F$ is a single algebraic extension of $F$.
+\end{proposition}
+\begin{proof}
+    If $F$ is a finite field, then its algebraic extension $K$ is also a finite field. Since $K\backslash\{0\}$ is a cyclic group, $K=F(\alpha)$ where $\alpha$ is the generater of the cyclic group.
+    \par If $F$ is an infinite field, suppose $F(\alpha_1,\cdots,\alpha_n)$. The proposition is obviously true when $n=1$. Assume it is true for $n-1$ elements, then $F(\alpha_1,\cdots,\alpha_{n-1})=F(\beta)$. Therefore $F(\alpha_1,\cdots,\alpha_n)=F(\alpha_n,\beta)$. Let $E$ be the splitting field of $\mathrm{Irr}(\beta,F)\mathrm{Irr}(\alpha,F)$. Then in $E[x]$,
+    $$
+    \mathrm{Irr}(\beta,F)=(x-\beta)(x-\beta_2)\cdots(x-\beta_s)
+    $$
+    $$
+    \mathrm{Irr}(\alpha_n,F)=(x-\alpha_n)(x-\alpha_n^1)\cdots(x-\alpha_n^t)
+    $$
+    since $\alpha_n$ is separable, $(\alpha_n,\alpha_n^1,\cdots,\alpha_n^t)$ is pairwise different. Then
+    $$
+    T=\left\{\dfrac{\beta-\beta_k}{\alpha_n-\alpha_n^j}\right\},\quad \mathrm{where}\,\beta=\beta_1
+    $$
+    obviously $\beta$ is a finite set. Therefore take $c\in F$ such that $c\not\in T$, and let $\theta=\beta-c\alpha_n$ and
+    $$
+    f(x)=((\theta-cx)-\beta)\cdots((\theta-cx)-\beta_n)
+    $$
+    Then $f(\alpha_n)=0$ and $f(\alpha_n^j)\neq 0$. Therefore
+    $$
+    (f(x),\mathrm{Irr}(\alpha_n,F))=x-\alpha_n
+    $$
+    since $f(x),\mathrm{Irr}(\alpha_n,F)\in F(\theta)[x]$, $\alpha_n\in F(\theta)$. Then $\beta\in F(\theta)$, therefore $F(\theta)=F(\alpha_n,\beta)$.
+\end{proof}
+\begin{remark}
+    $f(x)\in F(\theta)$ since $f(x)=g(\theta-cx)$, where $g(x)=\mathrm{Irr}(\beta,F)$. And $\mathrm{gcd}_E(f,\mathrm{Irr(\alpha_n,F)})$ is equal to $\mathrm{gcd}_{F(\theta)}(f,\mathrm{Irr(\alpha_n,F)})$ since it can be computed with the Euclidean algorithm.
+\end{remark}
+\begin{remark}
+    It is obvious that the separable extension of a separable extension of $\mathbb{Q}$ ($\mathrm{ch}\mathbb{Q}=0$) is still separable. However, it is true for all fields. The proof is omitted since the equations of our interest are mostly over $\mathbb{Q}$, 
+\end{remark}

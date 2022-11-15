@@ -1,0 +1,91 @@
+\section{Galois Groups}
+\begin{definition}[Galois Group]
+    Suppose $K$ is a finite extension over $F$. Then the set of all automorphism of $K$ that is identity on $F$ is a group, denoted by $\mathrm{Gal}(K/F)$.
+\end{definition}
+\begin{definition}[Invariant Subfield]
+    Suppose $G\le\mathrm{Aut}(K)$. Then $\mathrm{Inv}G=\{a\in K:g(a)=a,\forany g\in G\}$.
+\end{definition}
+\begin{lemma}\label{ineq-lemma}
+    Suppose $\sigma_1,\cdots,\sigma_n$ distinct automorphisms of $K$, denote their invariant subfield $F:=\{x\in K:\sigma_i(x)=x,\forany i\in\{1,\cdots,n\}\}$, then $\sigma_1,\cdots,\sigma_n$ are linearly independent as automorphism of $K$ as vector space over $F$.
+\end{lemma}
+\begin{proof}
+    Assume they are linearly dependent. Then $\sigma_{s+1}=\sum_{i=1}^sa_i\sigma_i$ with $\sigma_1,\cdots,\sigma_s$ linearly independent, therefore the representation is unique. Suppose $a\in K$ such that $\sigma_{s+1}(a)\neq\sigma_1(a)$, then
+    $$
+    \sigma_{s+1}(ax)=\sum_{i=1}^sa_i\sigma_i(ax),\quad \sigma_{s+1}(x)=\sum_{i=1}^s\dfrac{\sigma_i(a)}{\sigma_{s+1}(a)}a_i\sigma_i(x)
+    $$
+    contradiction.
+\end{proof}
+\begin{proposition}\label{1st-inequality}
+    $[K:\mathrm{Inv}(G)]=|G|$.
+\end{proposition}
+\begin{proof}
+    Let $G=\{\sigma_1=\mathrm{id},\cdots,\sigma_{n}\}$. First take $m$ elements from $K$ denoted by $u_1,\cdots,u_m$. If $m>n$, Suppose a matrix $A$ with $A_{ij}=\sigma_i(u_j)$. The linear equation $AX=0$ must have nontrivial solutions since $m>n$. Let $(1,\cdots ,b_m)$ be such solution that has most zeros. If $b_i\in\mathrm{Inv}G$ for each $i$, then $u_1,\cdots,u_m$ is linearly dependent since $\sum^m_1\sigma_k(b_ju_j)=\sigma_k(\sum^m_1b_ju_j)=0$ and $\sigma_k$ are isomorphisms. On the other hand, if there exists $b_i\not\in G$, assume $i=2$. Then $\exist \sigma\in G$ such that $\sigma(b_2)\neq b_2$. Thus
+    $$
+    \sum^m_1\sigma_k(u_j)\sigma(b_j)=\sigma\left(\sum^m_1\sigma^{-1}\sigma_k(b_ju_j)\right)=0
+    $$
+    $(1,\sigma(b_2),\cdots,\sigma(b_m))$ is also a nontrivial solution. Then $(0,b_2-\sigma(b_2),\cdots,b_m-\sigma(b_m))$ has more zero elements, contradiction. Hence every $m(m>n)$ elements in $K$ are linearly dependent, $[K:\mathrm{Inv}G]\le|G|$.
+    \par On the other hand, if $m<n$, let $(A)_{ij}=\sigma_j(u_i)$, then $AX=0$ still has nontrivial solutions, denoted by $(b_1,\cdots,b_m)$. Let $a_1,\cdots,a_m$ be $m$ arbitrary elements of $F$, then
+    $$
+    BX=0,\quad (B)_{ij}=\sigma_j(a_iu_i)
+    $$
+    therefore
+    $$
+    \sum_{i=1}^n\sigma_i(\sum^{m}_{j=1}a_iu_i)=0
+    $$
+    hence $\sigma_1,\cdots,\sigma_n$ linearly dependent, which contradicts lemma \ref{ineq-lemma}.
+\end{proof}
+\begin{definition}[Galois Extension]
+    Suppose $K/F$ with $\mathrm{Inv}(\mathrm{Gal}(K/F))=F$, then $K$ is called a Galois extension of $F$.
+\end{definition}
+\begin{proposition}
+    Suppose $K$ is a finite extension of $F$. Then the following statements are equivalent:
+    \par (1) $K$ is the splitting field of a separable polynomial $f(x)\in F[x]$.
+    \par (2) $K$ is a Galois extension of $F$ and $[K:F]=|\mathrm{Gal}(K/F)|$.
+    \par (3) $K$ is a separable normal extension of $F$.
+\end{proposition}
+\begin{proof}
+    (1)$\Rightarrow$(2). Since $f(x)$ is a separable polynomial of $F[x]$, any irreducible factor $p(x)$ of $f(x)$ has $\mathrm{deg}\,p(x)$ different roots in $K$. Therefore $|\mathrm{Gal}(K/F)|\le[K:F]$ by proposition $\ref{number-of-extensions}$. Let $E=\mathrm{Inv}(\mathrm{Gal}(K/F))$, then obviously $\mathrm{Gal}(K/E)=\mathrm{Gal}(K/F)$. Since $K$ is also the splitting field of $f(x)\in E[x]$, $[K:E]=|\mathrm{Gal}(K/E)|$. Therefore $[K:E]=[K:F]$, $E=F$.
+    \par (2)$\Rightarrow$(3). $\forany\alpha\in K$, denote $G=\mathrm{Gal}(K/F)$. Let
+    $$
+    \mathrm{Irr}(\alpha,F)=x^r+b_1x^{r-1}+\cdots+b_r,\quad b_i\in F
+    $$
+    then $\forany\sigma\in G$, $\sigma(\alpha) $ is also a root of $\mathrm{Irr}(\alpha,F)$. Therefore $G$ must be a finite group. Suppose $\{\sigma_1(\alpha),\cdots,\sigma_s(\alpha)\}=\{\sigma(\alpha):\sigma\in G\}$ where $\sigma_1$ is the identity. Let 
+    $$
+    h(x)=\prod^{s}_{i=1}(x-\sigma_i(\alpha))=x^s+p_1x^{s-1}+\cdots+p_s
+    $$
+    it is easy to verify that $\sigma(p_i)=p_i$ for any $\sigma\in G$. Therefore $p_i\in F$, $h(x)\in F[x]$. Since $s\le r$, $h(x)=\mathrm{Irr}(\alpha,F)$. Therefore $\mathrm{Irr}(\alpha,F)$ is separable, $K$ is a separable extension. $K$ is also a normal extension of $F$ by the above construction, since any irreducible polynomial in $F[x]$ that has one root in $K$ can be seen as $\mathrm{Irr}(\alpha,F)$ for some $\alpha\in K$.
+    \par (3)$\Rightarrow$(1) is trivial.
+\end{proof}
+\begin{theorem}[The Fundamental Theorem]
+    Suppose $K$ is a separable normal extension of $F$. Denote $\varGamma$ the set of all subgroups of $G=\mathrm{Gal}(K/F)$, and $\varSigma$ the set of all fields between $K$ and $F$, then the map
+    $$
+    \mathrm{Inv}:\varGamma\to\varSigma,H\mapsto\mathrm{Inv}H
+    $$ is a bijection, and
+    \par(1) $\mathrm{Inv}^{-1}=\mathrm{Gal}:E\mapsto\mathrm{Gal}(K/E)$,
+    \par(2) If $H\in\varGamma$, then $|H|=[K:\mathrm{Inv}H]$, $[G:H]=[\mathrm{Inv}H:F]$.
+    \par(3) $\mathrm{Inv}H$ is a normal extension of $F$ with $\mathrm{Gal}((\mathrm{Inv}H)/F)\cong G/H$ iff $H\triangleleft G$.
+\end{theorem}
+\begin{proof}
+    Suppose $H\in\varGamma$, $\mathrm{Inv}H=E$, then $F\subset E\subset K$. Thus $H\subset\mathrm{Gal}(K/E)\subset\mathrm{Gal}(K/F)$. Since $K$ is a separable normal extension of $F$, by the last proposition, $K$ is the splitting field of $f(x)\in F[x]$. Therefore $K$ is the splitting field of $f(x)\in E[x]$, hence $K$ is also a separable normal extension of $F$. Thus $|H|\le|\mathrm{Gal}(K/E)|=[K:E]$, and proposition \ref{1st-inequality} gives $|H|=[K:E]$. Therefore $H=\mathrm{Gal}(K/E)$, $\mathrm{Gal}\circ\mathrm{Inv}=\mathrm{id}_{\varGamma}$.
+    \par Conversely, suppose $E\in\varSigma$, then $F\subset E\subset K$. By the same argument $K$ is a separable normal extension on $E$. Thus $\mathrm{Gal}(K/E)\in\varGamma$ and $E=\mathrm{Inv}(\mathrm{Gal}(K/E))$. Therefore $\mathrm{Inv}\circ\mathrm{Gal}=\mathrm{id}_{\varSigma}$.
+    \par For (2), in (1) it is proved that for any $H\in\varGamma$, $|H|=[K:\mathrm{Inv}H]$. Then
+    $$
+    [G:H]=|G|/|H|=[K:F]/[K:\mathrm{Inv}H]=[\mathrm{Inv}H:F]
+    $$
+    \par For (3), suppose $H\in\varGamma$ and $a\in G$. Then $aHa^{-1}\in\varGamma$. Since $\mathrm{Inv}(aHa^{-1})=\{k\in K:aha^{-1}(k)=k\}=\{k\in K:h(a^{-1}(k))=a^{-1}(k)\}=a(\mathrm{Inv}H)$, when $H\triangleleft G$, $a(\mathrm{Inv}H)=\mathrm{Inv}H$. Let $\overline{a}$ be the restriction of $a$ to $\mathrm{Inv}H$, then $\overline{a}\in\mathrm{Gal}(\mathrm{Inv}H/F)$. Therefore $\pi:a\mapsto\overline{a}$ gives a homomorphism between $G$ and $\mathrm{Gal}(\mathrm{Inv}H/F)$. Thus
+    $$
+    F\subset\mathrm{Inv}(\mathrm{Gal}(\mathrm{Inv}H/F))\subset\mathrm{Inv}\pi(G)=F\quad (*)
+    $$
+    Therefore $\mathrm{Inv}H$ is a Galois extension of $F$, thus $K/F$ is normal. Since $\ker\pi=H$, by (2),
+    $$
+    |\pi(G)|=[G:H]=[\mathrm{Inv}H:F]=|\mathrm{Gal}(\mathrm{Inv}H/F)|
+    $$
+    hence $\pi(G)=\mathrm{Gal}(\mathrm{Inv}H/F)\cong G/H$. Conversely, suppose $F\subset E\subset K$ with $E$ a normal extension, then $\forany g\in G$, $g(E)=E$. Thus
+    $$
+    g(E)=g(\mathrm{Inv}(\mathrm{Gal}(G/E)))=\mathrm{Inv}(g(\mathrm{Gal}(G/E))g^{-1})=\mathrm{Inv}(\mathrm{Gal}(K/E))=E
+    $$
+    since $\mathrm{Inv}$ is injective, $\mathrm{Gal}(K/E)\triangleleft G$.
+\end{proof}
+\begin{remark}
+    Comments on $(*)$: (1) it is not obvious that $\pi(G)=\mathrm{Gal}(\mathrm{Inv}H/F)$; (2) $\mathrm{Inv}\pi(G)=F$ because $\pi$ is the restriction map. If $\mathrm{Inv}\pi(G)$ is larger than $F$, then $\mathrm{Inv}G$ will be larger than $F$ as well.
+\end{remark}

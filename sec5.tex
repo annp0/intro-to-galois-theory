@@ -1,0 +1,36 @@
+\section{Galois Groups of Polynomials}
+\begin{proposition}
+    Suppose $f(x)\in F[x]$ is a monic polynomial with no repeated roots, $K$ is the splitting field of $F[x]$, $f(x)=\prod^m_1(x-\alpha_i)$. Then
+    \par (1) $\mathrm{Gal}(K/F)$ is isomorphic to a subgroup $G$ of $S_{\alpha_1,\cdots,\alpha_m}$.
+    \par (2) $f(x)\in F[x]$ is irreducible iff $G$ is transitive.
+\end{proposition}
+\begin{proof}
+    \par (1) Let $X=\{\alpha_1,\cdots,\alpha_m\}$. Suppose $\sigma\in\mathrm{Gal}(K/F)$, then $f(\sigma(\alpha_i))=0$, therefore $\sigma(X)\subset X$. Obviously $\sigma(\alpha_i)\neq\sigma(\alpha_j)$ when $i\neq j$. Thus $\sigma|_X\in S_X$. Since $K=F(\alpha_1,\cdots,\alpha_m)$, $\sigma=\tau\in G$ iff $\sigma(\alpha_i)=\tau(\alpha_i)$ for each $i$. Thus $G$ is a subgroup of $S_X$.
+    \par (2) Suppose $G$ is transitive on $X$, then $\forany\alpha_i,\alpha_j\in X$, $\exist\sigma\in G$, such that $\sigma(\alpha_i)=\alpha_j$. Therefore $\mathrm{Irr}(\alpha_i,F)=\mathrm{Irr}(\alpha_j,F)$. Therefore in $K[x]$, $f(x)=\prod^m_1(x-\alpha_i)|\mathrm{Irr}(\alpha_i,F)$. Therefore $f(x)=\mathrm{Irr}(\alpha_i,F)$ is irreducible.
+    \par Conversely, if $f(x)$ is irreducible, then $\mathrm{Irr}(\alpha_i,F)=\mathrm{Irr}(\alpha_j,F)$ for each $i,j$. Then by proposition \ref{number-of-extensions}, there is an extension $\sigma'$ such that $\sigma'(\alpha_i)=\alpha_j$.
+\end{proof}
+\begin{definition}[Galois Groups of Polynomials]
+    Given $f(x)\in F[x]$, denote its splitting field $K$. The galois group of this polynomial $G(f,F):=\mathrm{Gal}(K/F)$.
+\end{definition}
+\begin{proposition}
+    Suppose $x_1,\cdots,x_n$ transcendental elements, $p_1,\cdots,p_n$ elementary symmetric polynomials of $x_1,\cdots,x_n$, $g(x)=\prod^n_{i=1}(x-x_i)\in F(p_1,\cdots,p_n)[x]$. Then $G(g,F(p_1,\cdots,p_n))\cong S_n$.
+\end{proposition}
+\begin{proof}
+    Let $G=\mathrm{Gal}(F(x_1,\cdots,x_n)/F)$. Then $\forany\sigma\in S_n$, $\sigma$ gives an automorphism on $F[x_1,\cdots,x_n]$ with $\sigma|_F=\mathrm{id}$. Extend it to $F(x_1,\cdots,x_n)$ with 
+    $$
+    \sigma(p/q)=\sigma(p)/\sigma(q),\quad p,q\in F[x_1,\cdots,x_n]
+    $$
+    therefore $\sigma\in G$, $S_n\le G$. Since $\sigma(p_i)=p_i$, $F(p_1,\cdots,p_n)\subset\mathrm{Inv}S_n$.
+    By proposition \ref{1st-inequality}, proposition \ref{number-of-extensions} and the fact that $F(x_1,\cdots,x_n)$ is the splitting field of $g(x)=\prod_i(x-x_i)\in F(p_1,\cdots,p_n)$, 
+    $$[F(x_1,\cdots,x_n):\mathrm{Inv}S_n]=|S_n|=n!\le[F(x_1,\cdots,x_n),F(p_1,\cdots,p_n)]\le n!$$
+    therefore $\mathrm{Inv}S_n=F(p_1,\cdots,p_n)$.
+\end{proof}
+\begin{proposition}
+    Suppose $p$ is a prime number, and $f(x)$ is a irreducible polynomial on $\mathbb{Q}$ with $\mathrm{deg}f(x)=p$, and it has two imaginary roots, then $G(f,\mathbb{Q})\cong S_p$.
+    \begin{proof}
+        Let $f(x)=\prod^p_{i=1}(x-\alpha_i)$ where $\alpha_1$ and $\alpha_2$ are imaginary roots. Since $[\mathbb{Q}(\alpha_i):\mathbb{Q}]=p$, $p$ is a factor of $|G(f,\mathbb{Q})|$. By the sylow first theorem, $G(f,\mathbb{Q})$ must has an element of rank $p$. Since $\tau:x\mapsto\overline{x}\in G(f,\mathbb{Q})$, $G(f,\mathbb{Q})$ has a 2-cycle. Suppose 2-cycle $(1\, 2)$ and rank $p$ element $(1\, 2\,\cdots\,p)$, then $G(f,\mathbb{Q})\cong S_p$ since
+        $$
+        (1\, 2\,\cdots\,p)^k(1\,2)(1\, 2\,\cdots\,p)^{-k}=(k+1\,k+2)
+        $$
+    \end{proof}
+\end{proposition}

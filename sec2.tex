@@ -1,0 +1,67 @@
+\section{Splitting Fields}
+\begin{definition}[Splitting Fields]
+    Given $f(x)\in F[x]$, $\mathrm{deg}\,f(x)=n$. The splitting field $K$ satisfies:
+    \par (1) $f(x)=c(x-\alpha_1)\cdots(x-\alpha_n)$, where $c,\alpha_1,\cdots,\alpha_n\in K$
+    \par (2) $K=F(\alpha_1,\cdots,\alpha_n)$
+\end{definition}
+\begin{proposition}\label{existance-of-splitting-field}
+    Give $f(x)\in F[x]$, the splitting field of $f(x)$ exists if $\mathrm{deg}\,f(x)>0$
+\end{proposition}
+\begin{proof}
+    The proof will be done by induction on $\mathrm{deg}\,f(x)$. When $\mathrm{deg}\,f(x)=1$, the splitting field of $f(x)$ is just $F$. Assume $\mathrm{deg}\,f(x)=n+1$, suppose $p(x)$ is an irreducible factor of $f(x)$. Then denote $F(\alpha_1)\cong F[x]/\left<p(x)\right>$, $p(\alpha_1)=0$ therefore $f(\alpha_1)=0$. Then $f(x)=(x-\alpha_1)f'(x)$, $\mathrm{deg}\,f'(x)=n$. Since the splitting field of $f'(x)$ exists, the splitting field of $f(x)$ can be found by just adding $\alpha_1$.
+\end{proof}
+\begin{proposition}
+    Denote the splitting field of $f(x)\in F[x]$ with $K$. Then $[K:F]\le(\mathrm{deg}\,f(x))!$
+\end{proposition}
+\begin{proof}
+    This is obvious by the proof of Proposition \ref{existance-of-splitting-field}. ($[F(\alpha_1):F]\le n$)
+\end{proof}
+\begin{proposition}
+    Suppose fields $F\subset E\subset K$ and $K$ is the splitting field of $f(x)\in F[x]$. Then $K$ is also the splititng field of $f(x)\in E[x]$.
+\end{proposition}
+\begin{proof}
+    This is obvious since $K=F(\alpha_1,\cdots,\alpha_n)\subset E(\alpha_1,\cdots,\alpha_n)\subset K$.
+\end{proof}
+\begin{proposition}
+    Suppose $\sigma:F\to\overline{F}$ a field homomorphism. Then:
+    \par (1) $\sigma$ can extend to an isomorphism $\sigma:F[x]\to\overline{F}[x]$, and $\sigma(p(x))$ is irreducible iff $p(x)$ is irreducible.
+    \par (2) Suppose $K,\overline{K}$ are the extensions of $F,\overline{F}$ respectively, $p(x)\in F[x]$ irreducible, and $\alpha\in K$, $\overline{\alpha}\in\overline{K}$ roots of $p(x)$ and $\sigma(p(x))$. Then $\sigma$ can extend to an isomorphism $\overline{\sigma}:F(\alpha)\to\overline{F}(\overline{\alpha})$ with $\overline{\sigma}(\alpha)=\overline{\alpha}$.
+\end{proposition}
+\begin{proof}
+    For (1), just let $\sigma|_F=\sigma$, $\sigma(x)=x$. The rest is obvious. For (2), suppose $\pi:F[x]\to F[x]/\left<p(x)\right>$, $\overline{\pi}:\overline{F}[x]\to \overline{F}[x]/\left<\sigma(p(x))\right>$, and $\nu,\nu'$ the canonical projection and isomorphism, this gives the isomorphism $\overline{\sigma}':x+\left<p(x)\right>\mapsto x+\left<\sigma(p(x))\right>$. Then the $\overline{\sigma}$ can be easily found by traversing the following commutative diagram.
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCJGW3hdIl0sWzAsMSwiXFxvdmVybGluZXtGfVt4XSJdLFsxLDAsIkZbeF0vXFxsZWZ0PHAoeClcXHJpZ2h0PiJdLFsxLDEsIlxcb3ZlcmxpbmV7Rn1beF0vXFxsZWZ0PFxcc2lnbWEocCh4KSlcXHJpZ2h0PiJdLFsyLDAsIkYoXFxhbHBoYSkiXSxbMiwxLCJcXG92ZXJsaW5le0Z9KFxcb3ZlcmxpbmV7XFxhbHBoYX0pIl0sWzAsMSwiXFxzaWdtYSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsIlxccGkiXSxbMSwzLCJcXG92ZXJsaW5le1xccGl9Il0sWzIsMywiXFxvdmVybGluZXtcXHNpZ21hfSciLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9LCJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiw0LCJcXG51IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNSwiXFxvdmVybGluZVxcbnUiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9LCJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJcXG92ZXJsaW5lXFxzaWdtYSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+    \[\begin{tikzcd}
+        {F[x]} & {F[x]/\left<p(x)\right>} & {F(\alpha)} \\
+        {\overline{F}[x]} & {\overline{F}[x]/\left<\sigma(p(x))\right>} & {\overline{F}(\overline{\alpha})}
+        \arrow["\sigma", hook, two heads, from=1-1, to=2-1]
+        \arrow["\pi", from=1-1, to=1-2]
+        \arrow["{\overline{\pi}}", from=2-1, to=2-2]
+        \arrow["{\overline{\sigma}'}", hook, two heads, from=1-2, to=2-2]
+        \arrow["\nu", hook, two heads, from=1-2, to=1-3]
+        \arrow["\overline\nu", hook, two heads, from=2-2, to=2-3]
+        \arrow["\overline\sigma", hook, two heads, from=1-3, to=2-3]
+    \end{tikzcd}\]
+\end{proof}
+\begin{remark}
+    The extension in (1) is unique.
+\end{remark}
+\begin{proposition}\label{number-of-extensions}
+    Give $\sigma:F\to\overline{F}$ an field isomorphism. Extend it to $\sigma:F[x]\to\overline{F}[x]$. Denote the splitting field of $f(x)\in F[x]$ and $\sigma(f(x))\in\overline{F}[x]$ with $E$ and $\overline{E}$ respectively. Then $\sigma$ can be extend to an isomorphism  $\overline\sigma:E\to\overline{E}$, and the number of different extensions $n_\sigma\le[E:F]$, where the equality is taken iff every irreducible factor of $f(x)$ in $E$ has no repeated roots.
+\end{proposition}
+\begin{proof}
+    Show the first part by induction on $\deg\,f(x)$. When $\deg\,f(x)=1$, $\sigma$ is just itself. Assume $\deg\,f(x)=n+1$, suppose $p(x)$ is a irreducible factor of $f(x)$. Then $\exist\alpha_1\in E$ and $\overline{\alpha}_1\in\overline{E}$, $p(\alpha_1)=\sigma(p(\overline{\alpha}_1))=0$. Therefore $\sigma$ can be extend to $\sigma_1:F(\alpha_1)\to\overline{F}(\overline{\alpha}_1)$ with $\sigma_1(\alpha_1)=\overline{\alpha}_1$. Then $\sigma$ can be extend to $\sigma_1: F(\alpha_1)[x]\to \overline{F}(\overline{\alpha}_1)[x]$. Then write $f(x)=(x-\alpha_1)f'(x)$, $\sigma_1(f(x))=(x-\overline{\alpha}_1)\sigma'(f'(x))$. By previous proposition $E$ and $\overline{E}$ are the splitting field of $f(x)\in F(\alpha_1)[x]$ and $f'(x)\in\overline{F}(\overline{\alpha}_1)[x]$ respectively. Therefore $\sigma_1$ can be extend to $\sigma_1:E\to\overline{E}$.
+    \par For the second part, denote $\overline{\sigma}:E\to\overline{E}$ the extension of $\sigma:F\to\overline{F}$. Suppose $p(x)$ is an irreducible factor of $f(x)$ and $p(\alpha_1)=0$ ($\alpha_1\in E$). Then  $\overline{\sigma}(\alpha_1)$ must be a root of $\sigma(p(x))$ since $\sigma(p(\overline{\sigma}(\alpha_1)))=\sigma\overline{\sigma}(p(\alpha_1))=0$. Denote $k_1$ the number of different choices of $\overline{\sigma}(\alpha_1)$, $k_1\le\mathrm{deg}\,p(x)=[F(\alpha_1):F]$, where the equality is taken iff $p(x)$ has no repeated roots. Therefore there are only $k_1$ extensions on $F(\alpha_1)$. Since $E=F(\alpha_1,\cdots,\alpha_n)$, the number of different extensions are
+    $$
+    n_\sigma=k_1\cdots k_n\le [F(\alpha_n):F(\alpha_1,\cdots,\alpha_{n-1})]\cdots[F(\alpha_1):F]=[E:F]
+    $$
+    where the condition of equality can be easily verified.
+\end{proof}
+\begin{remark}
+    This proposition implies that the splitting field is unique under isomorphism.
+\end{remark}
+\begin{proposition}
+    Suppose fields $F\subset E\subset K$ with $E$ the splititng field of $f(x)\in F[x]$, then for any isomorphism $\sigma:K\to K$ such that $\sigma|_F=\mathrm{id}$, $\sigma(E)=E$.
+\end{proposition}
+\begin{proof}
+    This is obvious by observing the image of $\sigma$ on the roots of $f(x)$.
+\end{proof}
