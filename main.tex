@@ -1,0 +1,354 @@
+\documentclass{article}
+\title{\textbf{Galois Theory for High School Students}}
+\author{N. Hott Maybe}
+\usepackage[top=3cm,bottom=3cm,left=2cm, right=2cm,a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{quiver}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{exercise}{Exercise}
+\newtheorem{remark}[theorem]{Remark}
+\renewcommand{\proofname}{\bf Proof}
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\exist}{\exists\,}
+\newcommand{\forany}{\forall\,}
+\begin{document}
+    \maketitle
+    \begin{abstract}
+        This note will go though most of the topic in the Galois Theory. This note mainly follows one of the projects from MIT PRIMES (a research program for students from K-9 to K-12), but may also be suitable for low quality undergradute students.
+    \end{abstract}
+    \tableofcontents
+    \newpage
+    \section{Algebraic Extensions}
+    \begin{remark}
+    Suppose $F$ is a field. The following theorem is listed without proof since it is well-known.
+    \end{remark}
+    \begin{theorem}
+         $F[x]$ is an Euclid ring, therefore $F[x]$ is a PID.
+    \end{theorem}
+    \begin{proposition}
+        Give $f(x)\in F[x]$ and $a\in F$, $(x-a)|f(x)$ iff $f(a)=0$.
+    \end{proposition}
+    \begin{remark}
+        Such $a$ in the above proposition is called a root of $f(x)\in F$.
+    \end{remark}
+    \begin{definition}[Field Extensions]
+        Give a set $S$, 
+        $$F[S]=\{\sum_{i_1,\cdots,i_n\ge 0}^{<\infty}a_{i_1\cdots i_n} a_1^{i_1}\cdots a_n^{i_n}, i_1\cdots i_n\in\mathbb{N},a_1\cdots a_n\in S, a_{i_1\cdots i_n}\in F\}$$
+        the fraction field of $F[S]$ is denoted by $F(S)$. $F(S)$ is the smallest field containing $F\cup S$. 
+    \end{definition}
+    \begin{remark}
+        Give an element $\alpha\in F(S)\backslash F$, if $\alpha$ is a root of a polynomial $f(x)\in F[x]$, then $\alpha$ is called an algebraic element.
+    \end{remark}
+    \begin{proposition}
+        If $S=S_1\cup S_2$, then $F(S)=F(S_1)(S_2)$
+    \end{proposition}
+    \begin{proof}
+        Obviously $F(S)\subset F(S_1)(S_2)$. Conversely, since $F(S_1)\subset F(S)$ and $S_2\subset F(S)$, $F(S_1)(S_2)\subset F(S)$.
+    \end{proof}
+    \begin{definition}[Algebraic Extensions]
+        $F(S)$ is a algebraic extension when $S$ is a finite collection of algebraic elements over $F$.
+    \end{definition}
+    \begin{remark}
+        Give $\alpha$ an algebraic element.
+    \end{remark}
+    \begin{proposition}
+        $F(\alpha)=F[\alpha]\cong F[x]/\left<p(x)\right>$
+    \end{proposition}
+    \begin{proof}
+        Let $I=\{f(x)\in F[x]:f(\alpha)=0\}=\left<p(x)\right>$. Obviously $F[\alpha]$ is a integral domain, therefore $p(x)$ is prime, $I$ is maximal, $F[\alpha]$ is a field.
+    \end{proof}
+    \begin{remark}
+        The irreducible polynomial $p(x)$ above is unique by some unit in $F$. Let the coefficient of the highest degree term be $1$, denote this polynomial $\mathrm{Irr}(\alpha,F)$.
+    \end{remark}
+    \begin{definition}[Degree]
+        $\mathrm{deg}(\alpha,F)=\mathrm{deg}(\mathrm{Irr}(\alpha,F))$.
+    \end{definition}
+    \begin{proposition}
+        Suppose $\mathrm{deg}(\alpha,F)=n$, then $F(\alpha)=\mathrm{span}_F\{1,\alpha,\cdots,\alpha^{n-1}\}$.
+    \end{proposition}
+    \begin{proof}
+        $\forany f(x)\in F[x]$, $\exist q(x), r(x)$ such that
+        $$
+        f(x)=q(x)\mathrm{Irr}(\alpha, F)+r(x),\quad \mathrm{deg}\,r(x)<n
+        $$
+        therefore $f(\alpha)=r(\alpha)$. Also, $1,\alpha,\cdots,\alpha^{n-1}$ are linearly indepedent.
+    \end{proof}
+    \begin{definition}
+        Suppose field $K$, $F\subset K$. Then $K$ is a vector space over $F$, denote the dimension of this vector space $[K:F]$.
+    \end{definition}
+    \begin{proposition}
+        $[F(\beta):F]<\infty$ iff $\beta$ is an algebraic element.
+    \end{proposition}
+    \begin{proof}
+        This follows immediately after writing down the basis of $F(\beta)$ as a vector space over $F$.
+    \end{proof}
+    \begin{proposition}
+        Suppose field $K$, $E$ with $F\subset E\subset K$. Then
+        $$
+        [K:F]=[K:E][E:F]
+        $$
+    \end{proposition}
+    \begin{proof}
+        This could be easily seen by directly writing down the basis of $K$ as a vector space over $F$.
+    \end{proof}
+    \begin{proposition}
+        Suppose $K$ a field with $[K:F]<\infty$. Then $\exist \alpha_1,\cdots\alpha_n$ algebraic elements in $K$, and $K=F(\alpha_1,\cdots,\alpha_n)$.
+    \end{proposition}
+    \begin{proof}
+        Pick any element $\alpha_1\in K\backslash F$. Then $[K:F(\alpha_1)]\le[K:F]$. If the equality is taken, the proof is done. Otherwise repeat this process, which obviously must be done in finite steps.
+    \end{proof}
+
+
+    \section{Splitting Fields}
+    \begin{definition}[Splitting Fields]
+        Given $f(x)\in F[x]$, $\mathrm{deg}\,f(x)=n$. The splitting field $K$ satisfies:
+        \par (1) $f(x)=c(x-\alpha_1)\cdots(x-\alpha_n)$, where $c,\alpha_1,\cdots,\alpha_n\in K$
+        \par (2) $K=F(\alpha_1,\cdots,\alpha_n)$
+    \end{definition}
+    \begin{proposition}\label{existance-of-splitting-field}
+        Give $f(x)\in F[x]$, the splitting field of $f(x)$ exists if $\mathrm{deg}\,f(x)>0$
+    \end{proposition}
+    \begin{proof}
+        The proof will be done by induction on $\mathrm{deg}\,f(x)$. When $\mathrm{deg}\,f(x)=1$, the splitting field of $f(x)$ is just $F$. Assume $\mathrm{deg}\,f(x)=n+1$, suppose $p(x)$ is an irreducible factor of $f(x)$. Then denote $F(\alpha_1)\cong F[x]/\left<p(x)\right>$, $p(\alpha_1)=0$ therefore $f(\alpha_1)=0$. Then $f(x)=(x-\alpha_1)f'(x)$, $\mathrm{deg}\,f'(x)=n$. Since the splitting field of $f'(x)$ exists, the splitting field of $f(x)$ can be found by just adding $\alpha_1$.
+    \end{proof}
+    \begin{proposition}
+        Denote the splitting field of $f(x)\in F[x]$ with $K$. Then $[K:F]\le(\mathrm{deg}\,f(x))!$
+    \end{proposition}
+    \begin{proof}
+        This is obvious by the proof of Proposition \ref{existance-of-splitting-field}. ($[F(\alpha_1):F]\le n$)
+    \end{proof}
+    \begin{proposition}
+        Suppose fields $F\subset E\subset K$ and $K$ is the splitting field of $f(x)\in F[x]$. Then $K$ is also the splititng field of $f(x)\in E[x]$.
+    \end{proposition}
+    \begin{proof}
+        This is obvious since $K=F(\alpha_1,\cdots,\alpha_n)\subset E(\alpha_1,\cdots,\alpha_n)\subset K$.
+    \end{proof}
+    \begin{proposition}
+        Suppose $\sigma:F\to\overline{F}$ a field homomorphism. Then:
+        \par (1) $\sigma$ can extend to an isomorphism $\sigma:F[x]\to\overline{F}[x]$, and $\sigma(p(x))$ is irreducible iff $p(x)$ is irreducible.
+        \par (2) Suppose $K,\overline{K}$ are the extensions of $F,\overline{F}$ respectively, $p(x)\in F[x]$ irreducible, and $\alpha\in K$, $\overline{\alpha}\in\overline{K}$ roots of $p(x)$ and $\sigma(p(x))$. Then $\sigma$ can extend to an isomorphism $\overline{\sigma}:F(\alpha)\to\overline{F}(\overline{\alpha})$ with $\overline{\sigma}(\alpha)=\overline{\alpha}$.
+    \end{proposition}
+    \begin{proof}
+        For (1), just let $\sigma|_F=\sigma$, $\sigma(x)=x$. The rest is obvious. For (2), suppose $\pi:F[x]\to F[x]/\left<p(x)\right>$, $\overline{\pi}:\overline{F}[x]\to \overline{F}[x]/\left<\sigma(p(x))\right>$, and $\nu,\nu'$ the canonical projection and isomorphism, this gives the isomorphism $\overline{\sigma}':x+\left<p(x)\right>\mapsto x+\left<\sigma(p(x))\right>$. Then the $\overline{\sigma}$ can be easily found by traversing the following commutative diagram.
+        % https://q.uiver.app/?q=WzAsNixbMCwwLCJGW3hdIl0sWzAsMSwiXFxvdmVybGluZXtGfVt4XSJdLFsxLDAsIkZbeF0vXFxsZWZ0PHAoeClcXHJpZ2h0PiJdLFsxLDEsIlxcb3ZlcmxpbmV7Rn1beF0vXFxsZWZ0PFxcc2lnbWEocCh4KSlcXHJpZ2h0PiJdLFsyLDAsIkYoXFxhbHBoYSkiXSxbMiwxLCJcXG92ZXJsaW5le0Z9KFxcb3ZlcmxpbmV7XFxhbHBoYX0pIl0sWzAsMSwiXFxzaWdtYSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsIlxccGkiXSxbMSwzLCJcXG92ZXJsaW5le1xccGl9Il0sWzIsMywiXFxvdmVybGluZXtcXHNpZ21hfSciLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9LCJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiw0LCJcXG51IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNSwiXFxvdmVybGluZVxcbnUiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9LCJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1LCJcXG92ZXJsaW5lXFxzaWdtYSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+        \[\begin{tikzcd}
+            {F[x]} & {F[x]/\left<p(x)\right>} & {F(\alpha)} \\
+            {\overline{F}[x]} & {\overline{F}[x]/\left<\sigma(p(x))\right>} & {\overline{F}(\overline{\alpha})}
+            \arrow["\sigma", hook, two heads, from=1-1, to=2-1]
+            \arrow["\pi", from=1-1, to=1-2]
+            \arrow["{\overline{\pi}}", from=2-1, to=2-2]
+            \arrow["{\overline{\sigma}'}", hook, two heads, from=1-2, to=2-2]
+            \arrow["\nu", hook, two heads, from=1-2, to=1-3]
+            \arrow["\overline\nu", hook, two heads, from=2-2, to=2-3]
+            \arrow["\overline\sigma", hook, two heads, from=1-3, to=2-3]
+        \end{tikzcd}\]
+    \end{proof}
+    \begin{remark}
+        The extension in (1) is unique.
+    \end{remark}
+    \begin{proposition}\label{number-of-extensions}
+        Give $\sigma:F\to\overline{F}$ an field isomorphism. Extend it to $\sigma:F[x]\to\overline{F}[x]$. Denote the splitting field of $f(x)\in F[x]$ and $\sigma(f(x))\in\overline{F}[x]$ with $E$ and $\overline{E}$ respectively. Then $\sigma$ can be extend to an isomorphism  $\overline\sigma:E\to\overline{E}$, and the number of different extensions $n_\sigma\le[E:F]$, where the equality is taken iff every irreducible factor of $f(x)$ in $E$ has no repeated roots.
+    \end{proposition}
+    \begin{proof}
+        Show the first part by induction on $\deg\,f(x)$. When $\deg\,f(x)=1$, $\sigma$ is just itself. Assume $\deg\,f(x)=n+1$, suppose $p(x)$ is a irreducible factor of $f(x)$. Then $\exist\alpha_1\in E$ and $\overline{\alpha}_1\in\overline{E}$, $p(\alpha_1)=\sigma(p(\overline{\alpha}_1))=0$. Therefore $\sigma$ can be extend to $\sigma_1:F(\alpha_1)\to\overline{F}(\overline{\alpha}_1)$ with $\sigma_1(\alpha_1)=\overline{\alpha}_1$. Then $\sigma$ can be extend to $\sigma_1: F(\alpha_1)[x]\to \overline{F}(\overline{\alpha}_1)[x]$. Then write $f(x)=(x-\alpha_1)f'(x)$, $\sigma_1(f(x))=(x-\overline{\alpha}_1)\sigma'(f'(x))$. By previous proposition $E$ and $\overline{E}$ are the splitting field of $f(x)\in F(\alpha_1)[x]$ and $f'(x)\in\overline{F}(\overline{\alpha}_1)[x]$ respectively. Therefore $\sigma_1$ can be extend to $\sigma_1:E\to\overline{E}$.
+        \par For the second part, denote $\overline{\sigma}:E\to\overline{E}$ the extension of $\sigma:F\to\overline{F}$. Suppose $p(x)$ is an irreducible factor of $f(x)$ and $p(\alpha_1)=0$ ($\alpha_1\in E$). Then  $\overline{\sigma}(\alpha_1)$ must be a root of $\sigma(p(x))$ since $\sigma(p(\overline{\sigma}(\alpha_1)))=\sigma\overline{\sigma}(p(\alpha_1))=0$. Denote $k_1$ the number of different choices of $\overline{\sigma}(\alpha_1)$, $k_1\le\mathrm{deg}\,p(x)=[F(\alpha_1):F]$, where the equality is taken iff $p(x)$ has no repeated roots. Therefore there are only $k_1$ extensions on $F(\alpha_1)$. Since $E=F(\alpha_1,\cdots,\alpha_n)$, the number of different extensions are
+        $$
+        n_\sigma=k_1\cdots k_n\le [F(\alpha_n):F(\alpha_1,\cdots,\alpha_{n-1})]\cdots[F(\alpha_1):F]=[E:F]
+        $$
+        where the condition of equality can be easily verified.
+    \end{proof}
+    \begin{remark}
+        This proposition implies that the splitting field is unique under isomorphism.
+    \end{remark}
+    \begin{proposition}
+        Suppose fields $F\subset E\subset K$ with $E$ the splititng field of $f(x)\in F[x]$, then for any isomorphism $\sigma:K\to K$ such that $\sigma|_F=\mathrm{id}$, $\sigma(E)=E$.
+    \end{proposition}
+    \begin{proof}
+        This is obvious by observing the image of $\sigma$ on the roots of $f(x)$.
+    \end{proof}
+    \section{Normal Extensions and Separable Extensions}
+    \begin{definition}[Normal Extensions]
+        An algebraic extension $K$ is called a normal extension of $F$ iff $\forany p(x)\in F[x]$ such that $p(x)$ is irreducible, if $p(x)$ has one root in $K$, then $p(x)$ splits over $K$.
+    \end{definition}
+    \begin{proposition}
+        Give $F\subset K$ fields, $K$ is a normal extension of $F$ iff $K$ is a splitting field of some polynomial in $F[x]$.
+    \end{proposition}
+    \begin{proof}
+        Let $K=F(\alpha_1,\cdots,\alpha_n)$ and $f(x)=\mathrm{Irr}(\alpha_1,F)\cdots \mathrm{Irr}(\alpha_n,F)$, since $K$ is a normal extension $f(x)=(x-\beta_1)\cdots(x-\beta_t)\in K$. Therefore $K$ is the splitting field of $f(x)$. Conversely, let $K$ be the spliting field of $f(x)$. Then let $p(x)\in F[x]$ and $\exist\alpha\in K$, $p(\alpha)=0$. Let $E$ be the splitting field of $p(x)\in K[x]$, and $g(x)=f(x)p(x)$, then $E$ is the splitting field of $f(x),g(x)\in F[x]$. Let $\beta\in E$ a root of $p(x)$, Then $\tau:F(\alpha)\to F(\beta),\alpha\mapsto\beta$ can be extend to an isomorphism of $E$ with $\tau|_F=\mathrm{id}$. Then $\tau(K)=K$, therefore $\beta\in K$, the proof is done by selecting $\beta$.
+        % https://q.uiver.app/?q=WzAsNSxbMCwxLCJGIl0sWzEsMCwiRihcXGFscGhhKSJdLFsxLDIsIkYoXFxiZXRhKSJdLFszLDEsIkUiXSxbMiwxLCJLIl0sWzEsMCwiXFxhbHBoYSIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCJcXGJldGEiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwzLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNCwiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+        \[\begin{tikzcd}
+            & {F(\alpha)} \\
+            F && K & E \\
+            & {F(\beta)}
+            \arrow["\alpha"', no head, from=1-2, to=2-1]
+            \arrow["\beta"', no head, from=2-1, to=3-2]
+            \arrow[no head, from=2-3, to=2-1]
+            \arrow[no head, from=2-3, to=2-4]
+            \arrow[no head, from=3-2, to=2-4]
+            \arrow[no head, from=1-2, to=2-3]
+        \end{tikzcd}\]
+    \end{proof}
+    \begin{definition}[Separable Polynomials]
+        $f(x)\in F[x]$ is separable iff every its irreducible factor has no repeated roots in its splitting field.
+    \end{definition}
+    \begin{proposition}
+        If $\mathrm{ch}\,F=0$, then $\forany f(x)\in F[x]$, $f(x)$ is separable.
+    \end{proposition}
+    \begin{proof}
+        For each of its irreducible factor $p(x)$, consider its derivative $p'(x)$. It is easy to see $(p'(x),p(x))=1$ when $p(x)$ has no repeated roots. If $F$ is of characteristic $0$, then obviously $(p'(x),p(x))=1$.
+    \end{proof}
+    \begin{definition}[Separable Elements]
+        $\alpha$ is called separable over $F$ iff $\mathrm{Irr}(\alpha,F)$ is separable.
+    \end{definition}
+    \begin{proposition}
+        Every finite separable extension of $F$ is a single algebraic extension of $F$.
+    \end{proposition}
+    \begin{proof}
+        If $F$ is a finite field, then its algebraic extension $K$ is also a finite field. Since $K\backslash\{0\}$ is a cyclic group, $K=F(\alpha)$ where $\alpha$ is the generater of the cyclic group.
+        \par If $F$ is an infinite field, suppose $F(\alpha_1,\cdots,\alpha_n)$. The proposition is obviously true when $n=1$. Assume it is true for $n-1$ elements, then $F(\alpha_1,\cdots,\alpha_{n-1})=F(\beta)$. Therefore $F(\alpha_1,\cdots,\alpha_n)=F(\alpha_n,\beta)$. Let $E$ be the splitting field of $\mathrm{Irr}(\beta,F)\mathrm{Irr}(\alpha,F)$. Then in $E[x]$,
+        $$
+        \mathrm{Irr}(\beta,F)=(x-\beta)(x-\beta_2)\cdots(x-\beta_s)
+        $$
+        $$
+        \mathrm{Irr}(\alpha_n,F)=(x-\alpha_n)(x-\alpha_n^1)\cdots(x-\alpha_n^t)
+        $$
+        since $\alpha_n$ is separable, $(\alpha_n,\alpha_n^1,\cdots,\alpha_n^t)$ is pairwise different. Then
+        $$
+        T=\left\{\dfrac{\beta-\beta_k}{\alpha_n-\alpha_n^j}\right\},\quad \mathrm{where}\,\beta=\beta_1
+        $$
+        obviously $\beta$ is a finite set. Therefore take $c\in F$ such that $c\not\in T$, and let $\theta=\beta-c\alpha_n$ and
+        $$
+        f(x)=((\theta-cx)-\beta)\cdots((\theta-cx)-\beta_n)
+        $$
+        Then $f(\alpha_n)=0$ and $f(\alpha_n^j)\neq 0$. Therefore
+        $$
+        (f(x),\mathrm{Irr}(\alpha_n,F))=x-\alpha_n
+        $$
+        since $f(x),\mathrm{Irr}(\alpha_n,F)\in F(\theta)[x]$, $\alpha_n\in F(\theta)$. Then $\beta\in F(\theta)$, therefore $F(\theta)=F(\alpha_n,\beta)$.
+    \end{proof}
+    \begin{remark}
+        $f(x)\in F(\theta)$ since $f(x)=g(\theta-cx)$, where $g(x)=\mathrm{Irr}(\beta,F)$. And $\mathrm{gcd}_E(f,\mathrm{Irr(\alpha_n,F)})$ is equal to $\mathrm{gcd}_{F(\theta)}(f,\mathrm{Irr(\alpha_n,F)})$ since it can be computed with the Euclidean algorithm.
+    \end{remark}
+    \section{Galois Groups}
+    \begin{definition}[Galois Group]
+        Suppose $K$ is a finite extension over $F$. Then the set of all automorphism of $K$ that is identity on $F$ is a group, denoted by $\mathrm{Gal}(K/F)$.
+    \end{definition}
+    \begin{definition}[Invariant Subfield]
+        Suppose $G\le\mathrm{Aut}(K)$. Then $\mathrm{Inv}G=\{a\in K:g(a)=a,\forany g\in G\}$.
+    \end{definition}
+    \begin{proposition}\label{1st-inequality}
+        $[K:\mathrm{Inv}(G)]\le|G|$.
+    \end{proposition}
+    \begin{proof}
+        Let $G=\{a_1=\mathrm{id},\cdots,a_{n}\}$. Take $m(m>n)$ elements from $K$ denoted by $u_1,\cdots,u_m$. Suppose a matrix $A$ with $A_{ij}=a_i(u_j)$. The linear equation $AX=0$ must have nontrivial solutions since $m>n$. Let $(1,\cdots ,b_m)$ be such solution that has most zeros. If $b_i\in\mathrm{Inv}G$ for each $i$, then $u_1,\cdots,u_m$ is linearly dependent since $\sum^m_1a_k(b_ju_j)=a_k(\sum^m_1b_ju_j)=0$ and $a_k$ are isomorphisms. On the other hand, if there exists $b_i\not\in G$, assume $i=2$. Then $\exist a\in G$ such that $a(b_2)\neq b_2$. Thus
+        $$
+        \sum^m_1a_k(u_j)a(b_j)=a\left(\sum^m_1a^{-1}a_k(b_ju_j)\right)=0
+        $$
+        $(1,a(b_2),\cdots,a(b_m))$ is also a nontrivial solution. Then $(0,b_2-a(b_2),\cdots,b_m-a(b_m))$ has more zero elements, contradiction. Hence every $m(m>n)$ elements in $K$ are linearly dependent, the proof is done.
+    \end{proof}
+    \begin{definition}[Galois Extension]
+        Suppose $K/F$ with $\mathrm{Inv}(\mathrm{Gal}(K/F))=F$, then $K$ is called a Galois extension of $F$.
+    \end{definition}
+    \begin{proposition}
+        Suppose $K$ is a finite extension of $F$. Then the following statements are equivalent:
+        \par (1) $K$ is the splitting field of a separable polynomial $f(x)\in F[x]$.
+        \par (2) $K$ is a Galois extension of $F$ and $[K:F]=|\mathrm{Gal}(K/F)|$.
+        \par (3) $K$ is a separable normal extension of $F$.
+    \end{proposition}
+    \begin{proof}
+        (1)$\Rightarrow$(2). Since $f(x)$ is a separable polynomial of $F[x]$, any irreducible factor $p(x)$ of $f(x)$ has $\mathrm{deg}\,p(x)$ different roots in $K$. Therefore $|\mathrm{Gal}(K/F)|\le[K:F]$ by proposition $\ref{number-of-extensions}$. Let $E=\mathrm{Inv}(\mathrm{Gal}(K/F))$, then obviously $\mathrm{Gal}(K/E)=\mathrm{Gal}(K/F)$. Since $K$ is also the splitting field of $f(x)\in E[x]$, $[K:E]=|\mathrm{Gal}(K/E)|$. Therefore $[K:E]=[K:F]$, $E=F$.
+        \par (2)$\Rightarrow$(3). $\forany\alpha\in K$, denote $G=\mathrm{Gal}(K/F)$. Let
+        $$
+        \mathrm{Irr}(\alpha,F)=x^r+b_1x^{r-1}+\cdots+b_r,\quad b_i\in F
+        $$
+        then $\forany\sigma\in G$, $\sigma(\alpha) $ is also a root of $\mathrm{Irr}(\alpha,F)$. Therefore $G$ must be a finite group. Suppose $\{\sigma_1(\alpha),\cdots,\sigma_s(\alpha)\}=\{\sigma(\alpha):\sigma\in G\}$ where $\sigma_1$ is the identity. Let 
+        $$
+        h(x)=\prod^{s}_{i=1}(x-\sigma_i(\alpha))=x^s+p_1x^{s-1}+\cdots+p_s
+        $$
+        it is easy to verify that $\sigma(p_i)=p_i$ for any $\sigma\in G$. Therefore $p_i\in F$, $h(x)\in F[x]$. Since $s\le r$, $h(x)=\mathrm{Irr}(\alpha,F)$. Therefore $\mathrm{Irr}(\alpha,F)$ is separable, $K$ is a separable extension. $K$ is also a normal extension of $F$ by the above construction, since any irreducible polynomial in $F[x]$ that has one root in $K$ can be seen as $\mathrm{Irr}(\alpha,F)$ for some $\alpha\in K$.
+        \par (3)$\Rightarrow$(1) is trivial.
+    \end{proof}
+    \begin{theorem}[The Fundamental Theorem]
+        Suppose $K$ is a separable normal extension of $F$. Denote $\varGamma$ the set of all subgroups of $G=\mathrm{Gal}(K/F)$, and $\varSigma$ the set of all fields between $K$ and $F$, then the map
+        $$
+        \mathrm{Inv}:\varGamma\to\varSigma,H\mapsto\mathrm{Inv}H
+        $$ is a bijection, and
+        \par(1) $\mathrm{Inv}^{-1}=\mathrm{Gal}:E\mapsto\mathrm{Gal}(K/E)$,
+        \par(2) If $H\in\varGamma$, then $|H|=[K:\mathrm{Inv}H]$, $[G:H]=[\mathrm{Inv}H:F]$.
+        \par(3) $\mathrm{Inv}H$ is a normal extension of $F$ with $\mathrm{Gal}((\mathrm{Inv}H)/F)\cong G/H$ iff $H\triangleleft G$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $H\in\varGamma$, $\mathrm{Inv}H=E$, then $F\subset E\subset K$. Thus $H\subset\mathrm{Gal}(K/E)\subset\mathrm{Gal}(K/F)$. Since $K$ is a separable normal extension of $F$, by the last proposition, $K$ is the splitting field of $f(x)\in F[x]$. Therefore $K$ is the splitting field of $f(x)\in E[x]$, hence $K$ is also a separable normal extension of $F$. Then by the last proposition,
+        $|H|\le|\mathrm{Gal}(K/E)|=[K:E]$, and proposition \ref{1st-inequality} gives $|H|\ge[K:E]$. Therefore $|H|=[K:E]$, $H=\mathrm{Gal}(K/E)$, $\mathrm{Gal}\circ\mathrm{Inv}=\mathrm{id}_{\varGamma}$.
+        \par Conversely, suppose $E\in\varSigma$, then $F\subset E\subset K$. By the same argument $K$ is a separable normal extension on $E$. Thus $\mathrm{Gal}(K/E)\in\varGamma$ and $E=\mathrm{Inv}(\mathrm{Gal}(K/E))$. Therefore $\mathrm{Inv}\circ\mathrm{Gal}=\mathrm{id}_{\varSigma}$.
+        \par For (2), in (1) it is proved that for any $H\in\varGamma$, $|H|=[K:\mathrm{Inv}H]$. Then
+        $$
+        [G:H]=|G|/|H|=[K:F]/[K:\mathrm{Inv}H]=[\mathrm{Inv}H:F]
+        $$
+        \par For (3), suppose $H\in\varGamma$ and $a\in G$. Then $aHa^{-1}\in\varGamma$. Since $\mathrm{Inv}(aHa^{-1})=\{k\in K:aha^{-1}(k)=k\}=\{k\in K:h(a^{-1}(k))=a^{-1}(k)\}=a(\mathrm{Inv}H)$, when $H\triangleleft G$, $a(\mathrm{Inv}H)=\mathrm{Inv}H$. Let $\overline{a}$ be the restriction of $a$ to $\mathrm{Inv}H$, then $\overline{a}\in\mathrm{Gal}(\mathrm{Inv}H/F)$. Therefore $\pi:a\mapsto\overline{a}$ gives a homomorphism between $G$ and $\mathrm{Gal}(\mathrm{Inv}H/F)$. Thus
+        $$
+        F\subset\mathrm{Inv}(\mathrm{Gal}(\mathrm{Inv}H/F))\subset\mathrm{Inv}\pi(G)=F\quad (*)
+        $$
+        Therefore $\mathrm{Inv}H$ is a Galois extension of $F$, thus $K/F$ is normal. Since $\ker\pi=H$, by (2),
+        $$
+        |\pi(G)|=[G:H]=[\mathrm{Inv}H:F]=|\mathrm{Gal}(\mathrm{Inv}H/F)|
+        $$
+        hence $\pi(G)=\mathrm{Gal}(\mathrm{Inv}H/F)\cong G/H$. Conversely, suppose $F\subset E\subset K$ with $E$ a normal extension, then $\forany g\in G$, $g(E)=E$. Thus
+        $$
+        g(E)=g(\mathrm{Inv}(\mathrm{Gal}(G/E)))=\mathrm{Inv}(g(\mathrm{Gal}(G/E))g^{-1})=\mathrm{Inv}(\mathrm{Gal}(K/E))=E
+        $$
+        since $\mathrm{Inv}$ is injective, $\mathrm{Gal}(K/E)\triangleleft G$.
+    \end{proof}
+    \begin{remark}
+        Comments on $(*)$: (1) it is not obvious that $\pi(G)=\mathrm{Gal}(\mathrm{Inv}H/F)$; (2) $\mathrm{Inv}\pi(G)=F$ because $\pi$ is the restriction map. If $\mathrm{Inv}\pi(G)$ is larger than $F$, then $\mathrm{Inv}G$ will be larger than $F$ as well.
+    \end{remark}
+    \section{Galois Groups of Polynomials}
+    \begin{proposition}
+        Suppose $f(x)\in F[x]$ is a monic polynomial with no repeated roots, $K$ is the splitting field of $F[x]$, $f(x)=\prod^m_1(x-\alpha_i)$. Then
+        \par (1) $\mathrm{Gal}(K/F)$ is isomorphic to a subgroup $G$ of $S_{\alpha_1,\cdots,\alpha_m}$.
+        \par (2) $f(x)\in F[x]$ is irreducible iff $G$ is transitive.
+    \end{proposition}
+    \begin{proof}
+        \par (1) Let $X=\{\alpha_1,\cdots,\alpha_m\}$. Suppose $\sigma\in\mathrm{Gal}(K/F)$, then $f(\sigma(\alpha_i))=0$, therefore $\sigma(X)\subset X$. Obviously $\sigma(\alpha_i)\neq\sigma(\alpha_j)$ when $i\neq j$. Thus $\sigma|_X\in S_X$. Since $K=F(\alpha_1,\cdots,\alpha_m)$, $\sigma=\tau\in G$ iff $\sigma(\alpha_i)=\tau(\alpha_i)$ for each $i$. Thus $G$ is a subgroup of $S_X$.
+        \par (2) Suppose $G$ is transitive on $X$, then $\forany\alpha_i,\alpha_j\in X$, $\exist\sigma\in G$, such that $\sigma(\alpha_i)=\alpha_j$. Therefore $\mathrm{Irr}(\alpha_i,F)=\mathrm{Irr}(\alpha_j,F)$. Therefore in $K[x]$, $f(x)=\prod^m_1(x-\alpha_i)|\mathrm{Irr}(\alpha_i,F)$. Therefore $f(x)=\mathrm{Irr}(\alpha_i,F)$ is irreducible.
+        \par Conversely, if $f(x)$ is irreducible, then $\mathrm{Irr}(\alpha_i,F)=\mathrm{Irr}(\alpha_j,F)$ for each $i,j$. Then by proposition \ref{number-of-extensions}, there is an extension $\sigma'$ such that $\sigma'(\alpha_i)=\alpha_j$.
+    \end{proof}
+    \begin{definition}[Galois Groups of Polynomials]
+        Given $f(x)\in F[x]$, denote its splitting field $K$. The galois group of this polynomial $G(f,F):=\mathrm{Gal}(K/F)$.
+    \end{definition}
+    \begin{proposition}
+        Suppose $x_1,\cdots,x_n$ transcendental elements, $p_1,\cdots,p_n$ elementary symmetric polynomials of $x_1,\cdots,x_n$, $g(x)=\prod^n_{i=1}(x-x_i)\in F(p_1,\cdots,p_n)[x]$. Then $G(g,F(p_1,\cdots,p_n))\cong S_n$.
+    \end{proposition}
+    \begin{proof}
+        Let $G=\mathrm{Gal}(F(x_1,\cdots,x_n)/F)$. Then $\forany\sigma\in S_n$, $\sigma$ gives an automorphism on $F[x_1,\cdots,x_n]$ with $\sigma|_F=\mathrm{id}$. Extend it to $F(x_1,\cdots,x_n)$ with 
+        $$
+        \sigma(p/q)=\sigma(p)/\sigma(q),\quad p,q\in F[x_1,\cdots,x_n]
+        $$
+        therefore $\sigma\in G$, $S_n\le G$. Since $\sigma(p_i)=p_i$,
+        $$
+        F(p_1,\cdots,p_n)\subset\mathrm{Inv}S_n
+        $$
+        thus
+        $$
+        [F(x_1,\cdots,x_n):\mathrm{Inv}S_n]\le[F(x_1,\cdots,x_n):F(p_1,\cdots,p_n)]
+        $$
+        since $\mathrm{deg}g(x)=n$, $[F(x_1,\cdots,x_n):F(p_1,\cdots,p_n)]\le n!$, which is the same as proposition \ref{1st-inequality}. On the other hand, each $\sigma_i\in S_n$ gives an automorphism on $F(x_1,\cdots,x_n)$ as vector space on $\mathrm{Inv}S_n$. Obviously $\sigma_1,\cdots,\sigma_{n!}$ are linearly independent. Therefore 
+    \end{proof}
+    \begin{proposition}
+        Suppose $p$ is a prime number, and $f(x)$ is a irreducible polynomial on $\mathbb{Q}$ with $\mathrm{deg}f(x)=p$, and it has two imaginary roots, then $G(f,\mathbb{Q})\cong S_p$.
+    \end{proposition}
+    \section{Solvable Groups}
+    \section{Solvability: Algebraic Equations}
+    \section{Solvability: Straightedge-and-compass Constructions}
+    \section{Reference}
+\end{document}
