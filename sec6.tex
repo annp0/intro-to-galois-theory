@@ -1,4 +1,34 @@
 \section{Solvability: Algebraic Equations}
-\begin{definition}
-    
+\begin{definition}[Radical Extensions]
+    Suppose $K/F$ has a sequence of intermediate fields
+    $$
+    F\subset F_1\subset\cdots\subset F_i\subset F_{i+1}\subset\cdots F_m=K
+    $$
+    where $F_{i+1}$ is the splitting field of $x^{n_i+1}-a_{i+1}\in F_{i}[x]$, then $K$ is called a radical extension of $F$. $K$ is a simple radical extension of $F$ when $m=1$.
 \end{definition}
+\begin{definition}[Solvablility by Radicals]
+    Suppose $f(x)\in F[x]$. $f(x)=0$ is solvable by radicals in $F$ if there exists a radical extension $K$ of $F$ such that the splitting field of $f(x)\in F[x]$ is contained in $F$.
+\end{definition}
+\begin{remark}
+    The definition of solvablility by radicals is consistent with its literal meaning: $f(x)$ is solvable by radicals on $F$ if and only if the roots of $f(x)=0$ can be expressed by finite operations of addition, subtraction, multiplication, division, and taking radicals over elements in $F$.
+\end{remark}
+\begin{proposition}
+    If $K$ is a radical extension of $F$, then there is a normal radical extension $\overline{K}$ of $F$ such that $K\subset\overline{K}$.
+\end{proposition}
+\begin{proof}
+    Since $K$ is a radical extension of $F$, there is a sequence of simple radical extensions from $F$ to $K$, index it by $m$. Attempt proof by induction on $m$. When $m=1$, since it is a splitting field of some polynomial, it is normal. Assume the proposition is true for $m-1$, then $\exist\overline{E}$ such that $E=F_{m-1}\subset\overline{E}$, and $\overline{E}$ is a normal radical extension. Since $K=F_m$ is the splitting field of $x^n-\beta\in E[x]$, $K=E(\epsilon,\theta)$, where $\theta^n-\beta=0$ and $\epsilon^n-1=0$, $\forany 0<m<n, \epsilon^m-1\neq 0$. Suppose $\mathrm{Irr}(\beta,F)=\prod^r_{i=1}(x-\beta_i)$ with $\beta=\beta_1$, since $\overline{E}$ is a normal extension, $\beta_i\in\overline{E}$. Let $\alpha_i$ be the roots of $x^n-\beta_i$, $1\le i\le r$. Let $\alpha_1=\theta$, then
+    $$
+    K=E(\epsilon,\theta)\subset\overline{E}(\epsilon,\alpha_1,\cdots,\alpha_r)=\overline{K}
+    $$
+    it is easy to observe that $\overline{K}$ is a radical extension of $\overline{E}$, therefore a radical extension of $\overline{F}$. Since $\prod^r_1(x-\beta_i)=\mathrm{Irr}(\beta,F)\in F[x]$,
+    $$
+    g(x)=\prod^r_1(x^n-\beta_i)\in F[x]
+    $$
+    suppose $\overline{E}$ is the splitting field of $f(x)\in F[x]$. Then $\overline{K}$ is the splitting field of $f(x)g(x)$ therefore a normal extension.
+    \begin{theorem}
+        If $f(x)\in F[x]$, then $f(x)$ is solvable by radicals if $G(f,F)$ is solvable.
+    \end{theorem}
+    \begin{proof}
+        
+    \end{proof}
+\end{proof}

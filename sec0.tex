@@ -1,0 +1,89 @@
+\section{Preliminaries}
+\begin{remark}
+    This section will befiefly list the preliminary definitions in fields and groups. Subgroups are often denoted by ``$\le$'': $H\le G$ means $H$ is a subgroup of $G$.
+\end{remark}
+\begin{theorem}[The Classification Theorem of Finite Abelian Groups]
+    Suppose $G$ an finite abelian group. Then
+    $$
+    G=\bigoplus^{n}_{i=1}\mathbb{Z}_{p_i^{k_i}}
+    $$
+    where $p_i$ are primes that are not necessarily distinct.
+\end{theorem}
+\begin{proof}
+    The proof is omitted since it is well-known.
+\end{proof}
+\begin{definition}
+    Suppose $G$ a group and $g_1,g_2\in G$. Then $[g_1,g_2]:=g_1^{-1}g_2^{-1}g_1g_2$.
+\end{definition}
+\begin{definition}[Commutator Subgroups]
+    Suppose $H,K\le G$. Then $[H,K]:=\{[h,k]:h\in H,k\in K\}$ are called the commutator subgroup.
+\end{definition}
+\begin{definition}[Normal Series and Subnormal Series]
+    Suppose a sequence of subgroups of $G$:
+    $$
+    G=G_1\ge G_2\ge\cdots\ge G_t\ge G_{t+1}=\{1\}
+    $$
+    it is called a subnormal series if $G_i\triangleleft G_{i-1}$ for each $i$, and normal if $G_i\triangleleft G$ for each $i$.
+\end{definition}
+\begin{definition}
+    Define $G^{(k)}$ via induction:
+    $$
+    G^{(0)}=G,\quad G^{(k)}=[G^{(k-1)},G^{(k-1)}]
+    $$
+\end{definition}
+\begin{definition}[Solvability of Groups]
+    If $\exist k$ such that $G^{(k)}=\{1\}$, then $G$ is called solvable.
+\end{definition}
+\begin{proposition}
+    Suppose an exact sequence of groups $0\to A\to G\to B\to 0$, then $G$ is solvable iff $A$ and $B$ are solvable.
+\end{proposition}
+\begin{proof}
+    Assume $A\triangleleft G$, $B=G/A$, let $\pi:G\to B$ the canonical projection. If $G$ is solvable, since $A^{(k)}\subset G^{(k)}$, $A$ is solvable. Obviously $\pi(G^{(k)})=B^{(k)}$, therefore $B$ is also solvable. Conversely, if $\exist k_1,k_2$ such that $A^{(k_1)}=B^{(k_2)}=\{1\}$, then $\pi(G^{(k_2)})=1$, therefore $G^{(k_2)}\subset A$, $G^{(k_1+k_2)}=\{1\}$.
+\end{proof}
+\begin{proposition}
+    The following statements are equivalent: (suppose $G$ is finite)
+    \par (1) $G$ is a solvable group.
+    \par (2) There exists a normal series of $G$:
+    $$
+    G=G_1\ge G_2\ge\cdots G_r=\{1\}
+    $$
+    such that $G_i/G_{i+1}$ is an abelian group for each $i$.
+    \par (3) There exists a subnormal series of $G$:
+    $$
+    G=G_1'\ge G_2'\ge\cdots G_s'=\{1\}
+    $$
+    such that $G_i/G_{i+1}$ is an abelian group for each $i$.
+    \par (4) There exists a subnormal series of $G$:
+    $$
+    G=G_1''\ge G_2''\ge\cdots G_t''=\{1\}
+    $$
+    such that $G_i/G_{i+1}$ is a finite group of prime order for each $i$.
+\end{proposition}
+\begin{proof}
+    (1)$\Rightarrow$(2) is trivial since $G^{(i)}/G^{(i+1)}$ is abelian. (2)$\Rightarrow$(3) is also trivial. (3)$\Rightarrow$(4). Since $|G|<\infty$, $|G_i'/G_{i+1}'|\le\infty$. Obviously $\mathbb{Z}_{p_n^{k_n-1}}\le\mathbb{Z}_{p_n^{k_n}}$, therefore
+    $$
+    G_i'/G_{i+1}'\cong\bigoplus^{n}_{i=1}\mathbb{Z}_{p_i^{k_i}}\ge\left(\bigoplus^{n-1}_{i=1}\mathbb{Z}_{p_i^{k_i}}\right)\oplus\mathbb{Z}_{p_n^{k_n-1}}=H
+    $$
+    where $H\triangleleft G_i'/G_{i+1}'$, and $[G_i'/G_{i+1}':H]=p_k$. Let $\pi:G_i'\to G_i'/G_{i+1}'$ the canonical projection and $H'=\pi^{-1}(H)$, then
+    $$
+    G'_i\triangleright H'\triangleright G'_{i+1}
+    $$
+    with $|G'_i/H'|=p_k$ and $H'/G'_{i+1}$ an abelian group with smaller order. Therefore by keep adding $H'$, such desired series can be found.
+    \par (4)$\Rightarrow$(1). Obvious since the exact sequence 
+    $$0\to G''_{1}/G''_{2}\to G''_{1}\to G''_{2}\to 0$$
+\end{proof}
+\begin{remark}
+    Suppose $F$ is a field. The following theorem is listed without proof since it is well-known.
+\end{remark}
+\begin{proposition}
+    If $F$ is a finite field, then $F\backslash\{0\}$ is a cyclic group.
+\end{proposition}
+\begin{theorem}
+        $F[x]$ is an Euclid ring, therefore $F[x]$ is a PID.
+\end{theorem}
+\begin{proposition}
+    Give $f(x)\in F[x]$ and $a\in F$, $(x-a)|f(x)$ iff $f(a)=0$.
+\end{proposition}
+\begin{remark}
+    Such $a$ in the above proposition is called a root of $f(x)\in F$.
+\end{remark}

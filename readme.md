@@ -6,8 +6,7 @@ The text can be found [here](https://github.com/annp0/intro-to-galois-theory/blo
 
 This note is self-contained except:
 
-- basic knowledge of fields: see remark 1.1 - remark 1.5
-- sylow theorems
+- basic knowledge of fields and groups, see section 1: Preliminaries.
 
 Any problems (including the correctness and readability of the text) are welcomed.
 
