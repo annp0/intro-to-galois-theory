@@ -2,16 +2,6 @@
 \begin{remark}
     This section will befiefly list the preliminary definitions in fields and groups. Subgroups are often denoted by ``$\le$'': $H\le G$ means $H$ is a subgroup of $G$.
 \end{remark}
-\begin{theorem}[The Classification Theorem of Finite Abelian Groups]
-    Suppose $G$ an finite abelian group. Then
-    $$
-    G=\bigoplus^{n}_{i=1}\mathbb{Z}_{p_i^{k_i}}
-    $$
-    where $p_i$ are primes that are not necessarily distinct.
-\end{theorem}
-\begin{proof}
-    The proof is omitted since it is well-known.
-\end{proof}
 \begin{definition}
     Suppose $G$ a group and $g_1,g_2\in G$. Then $[g_1,g_2]:=g_1^{-1}g_2^{-1}g_1g_2$.
 \end{definition}
@@ -41,26 +31,19 @@
     Assume $A\triangleleft G$, $B=G/A$, let $\pi:G\to B$ the canonical projection. If $G$ is solvable, since $A^{(k)}\subset G^{(k)}$, $A$ is solvable. Obviously $\pi(G^{(k)})=B^{(k)}$, therefore $B$ is also solvable. Conversely, if $\exist k_1,k_2$ such that $A^{(k_1)}=B^{(k_2)}=\{1\}$, then $\pi(G^{(k_2)})=1$, therefore $G^{(k_2)}\subset A$, $G^{(k_1+k_2)}=\{1\}$.
 \end{proof}
 \begin{proposition}
-    The following statements are equivalent: (suppose $G$ is finite)
-    \par (1) $G$ is a solvable group.
-    \par (2) There exists a normal series of $G$:
+    Suppose $G$ is finite. Then $G$ is a solvable group iff there exists a subnormal series of $G$:
     $$
-    G=G_1\ge G_2\ge\cdots G_r=\{1\}
+    G=G_1\ge G_2\ge\cdots G_s=\{1\}
     $$
     such that $G_i/G_{i+1}$ is an abelian group for each $i$.
-    \par (3) There exists a subnormal series of $G$:
-    $$
-    G=G_1'\ge G_2'\ge\cdots G_s'=\{1\}
-    $$
-    such that $G_i/G_{i+1}$ is an abelian group for each $i$.
-    \par (4) There exists a subnormal series of $G$:
-    $$
-    G=G_1''\ge G_2''\ge\cdots G_t''=\{1\}
-    $$
-    such that $G_i/G_{i+1}$ is a finite group of prime order for each $i$.
 \end{proposition}
 \begin{proof}
-    (1)$\Rightarrow$(2) is trivial since $G^{(i)}/G^{(i+1)}$ is abelian. (2)$\Rightarrow$(3) is also trivial. (3)$\Rightarrow$(4). Since $|G|<\infty$, $|G_i'/G_{i+1}'|\le\infty$. Obviously $\mathbb{Z}_{p_n^{k_n-1}}\le\mathbb{Z}_{p_n^{k_n}}$, therefore
+    One direction is trivial since $G^{(i)}/G^{(i+1)}$ is abelian. Conversely, $G_{s-1}$ is abelian therefore solvable. By the exact sequence
+    $$0\to G_{s-1}\to G_{s-2}\to G_{s-2}/G_{s-1}\to 0$$
+    $G_{s-2}$ is solvable. By induction all $G_i$ are solvable, therefore $G$ is solvable.
+\end{proof}
+\begin{remark}
+    $G_i/G_{i+1}$ can also be assumed cyclic. Since $|G|<\infty$, $|G_i'/G_{i+1}'|\le\infty$. Obviously $\mathbb{Z}_{p_n^{k_n-1}}\le\mathbb{Z}_{p_n^{k_n}}$, therefore
     $$
     G_i'/G_{i+1}'\cong\bigoplus^{n}_{i=1}\mathbb{Z}_{p_i^{k_i}}\ge\left(\bigoplus^{n-1}_{i=1}\mathbb{Z}_{p_i^{k_i}}\right)\oplus\mathbb{Z}_{p_n^{k_n-1}}=H
     $$
@@ -69,8 +52,20 @@
     G'_i\triangleright H'\triangleright G'_{i+1}
     $$
     with $|G'_i/H'|=p_k$ and $H'/G'_{i+1}$ an abelian group with smaller order. Therefore by keep adding $H'$, such desired series can be found.
-    \par (4)$\Rightarrow$(1). Obvious since the exact sequence 
-    $$0\to G''_{1}/G''_{2}\to G''_{1}\to G''_{2}\to 0$$
+\end{remark}
+\begin{proposition}
+    $S_n$ is solvable iff $n\le 4$.
+\end{proposition}
+\begin{proof}
+    Obviously $S_1$, $S_2$ are solvable. $S_3$ is solvable because
+    $$
+    S_3\triangleright A_3\triangleright\{1\}
+    $$
+    $S_4$ is solvable because
+    $$
+    S_4\triangleright A_4\triangleright K_4\triangleright\{1\}
+    $$
+    when $n\ge 5$, $A_n$ is a non-abelian simple group, therefore unsolvable. Therefore $S_n$ is unsolvable.
 \end{proof}
 \begin{remark}
     Suppose $F$ is a field. The following theorem is listed without proof since it is well-known.
@@ -87,3 +82,4 @@
 \begin{remark}
     Such $a$ in the above proposition is called a root of $f(x)\in F$.
 \end{remark}
+\newpage

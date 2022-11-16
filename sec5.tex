@@ -1,3 +1,4 @@
+\newpage
 \section{Galois Groups of Polynomials}
 \begin{proposition}
     Suppose $f(x)\in F[x]$ is a monic polynomial with no repeated roots, $K$ is the splitting field of $F[x]$, $f(x)=\prod^m_1(x-\alpha_i)$. Then
@@ -25,12 +26,48 @@
     $$[F(x_1,\cdots,x_n):\mathrm{Inv}S_n]=|S_n|=n!\le[F(x_1,\cdots,x_n),F(p_1,\cdots,p_n)]\le n!$$
     therefore $\mathrm{Inv}S_n=F(p_1,\cdots,p_n)$.
 \end{proof}
+\begin{remark}
+    From now on, assume $F$ is of characteristic 0.
+\end{remark}
+\begin{definition}[Roots of Unity]
+    The roots of $x^n=1$ are called n-th root of unity. If a n-th root of unity $\theta$ satisfies
+    $$
+    \theta^n=1,\quad\theta^m\neq 1,\quad \forany m, 0<m<n
+    $$
+    then it is called a n-th primitive root of unity.
+\end{definition}
 \begin{proposition}
-    Suppose $p$ is a prime number, and $f(x)$ is a irreducible polynomial on $\mathbb{Q}$ with $\mathrm{deg}f(x)=p$, and it has two imaginary roots, then $G(f,\mathbb{Q})\cong S_p$.
-    \begin{proof}
-        Let $f(x)=\prod^p_{i=1}(x-\alpha_i)$ where $\alpha_1$ and $\alpha_2$ are imaginary roots. Since $[\mathbb{Q}(\alpha_i):\mathbb{Q}]=p$, $p$ is a factor of $|G(f,\mathbb{Q})|$. By the sylow first theorem, $G(f,\mathbb{Q})$ must has an element of rank $p$. Since $\tau:x\mapsto\overline{x}\in G(f,\mathbb{Q})$, $G(f,\mathbb{Q})$ has a 2-cycle. Suppose 2-cycle $(1\, 2)$ and rank $p$ element $(1\, 2\,\cdots\,p)$, then $G(f,\mathbb{Q})\cong S_p$ since
-        $$
-        (1\, 2\,\cdots\,p)^k(1\,2)(1\, 2\,\cdots\,p)^{-k}=(k+1\,k+2)
-        $$
-    \end{proof}
+    Suppose $\theta$ a n-th primitive root of unity. Then $\theta^k$ is primitive iff $(k,n)=1$.
+\end{proposition}
+\begin{proof}
+    Suppose $K$ the splititng field of $x^n-1\in F[x]$. Since $(nx^{n-1},x^n-1)=1$, $x^n-1$ is separable, therefore has no repeated roots. Therefore the set of roots is $\{1,\theta,\cdots,\theta^{n-1}\}=\left<\theta\right>$. The rest is clear since it is a cyclic group.
+\end{proof}
+\begin{definition}[Euler Function]
+    $\varphi(n)$ denotes the number of coprimes that are less than $n$.
+\end{definition}
+\begin{remark}
+    It is easy to see that $\varphi(n)$ also denotes the number of n-th primitive roots of unity.
+\end{remark}
+\begin{definition}[Cyclotomic Polynomial]
+    n-th cyclotomic polynomial is defined as
+    $$
+    \phi_n(x)=\prod^{\varphi(n)}_{i=1}(x-\theta_i)
+    $$
+\end{definition}
+\begin{remark}
+    The following proof is omitted since lack of time.
+\end{remark}
+\begin{proposition}
+    $\forany n\in\mathbb{N}$,
+    \par (1) $x^n-1=\prod_{d|n}\phi_d(x)$
+    \par (2) $\phi_n(x)$ is irreducible on $\mathbb{Q}[x]$.
+\end{proposition}
+\begin{proposition}\label{tt1}
+    $G(\phi_n,\mathbb{Q})$ is abelian.
+\end{proposition}
+\begin{proposition}\label{tt2}
+    Suppose $a\in\mathbb{Q}$, $G(x^n-a,\mathbb{Q})$ is abelian.
+\end{proposition}
+\begin{proposition}\label{tt3}
+    If $F$ contains n-th roots of unity, and $K$ a Galois extension such that $\mathrm{Gal}(K/F)$ is a cyclic group of degree $n$, then $\exist\epsilon\in K$ such that $K=F(\epsilon)$ and $\epsilon^n=a\in F$.
 \end{proposition}

@@ -12,11 +12,11 @@
 \begin{remark}
     The definition of solvablility by radicals is consistent with its literal meaning: $f(x)$ is solvable by radicals on $F$ if and only if the roots of $f(x)=0$ can be expressed by finite operations of addition, subtraction, multiplication, division, and taking radicals over elements in $F$.
 \end{remark}
-\begin{proposition}
+\begin{proposition}\label{solvable-ext-wlog-normal}
     If $K$ is a radical extension of $F$, then there is a normal radical extension $\overline{K}$ of $F$ such that $K\subset\overline{K}$.
 \end{proposition}
 \begin{proof}
-    Since $K$ is a radical extension of $F$, there is a sequence of simple radical extensions from $F$ to $K$, index it by $m$. Attempt proof by induction on $m$. When $m=1$, since it is a splitting field of some polynomial, it is normal. Assume the proposition is true for $m-1$, then $\exist\overline{E}$ such that $E=F_{m-1}\subset\overline{E}$, and $\overline{E}$ is a normal radical extension. Since $K=F_m$ is the splitting field of $x^n-\beta\in E[x]$, $K=E(\epsilon,\theta)$, where $\theta^n-\beta=0$ and $\epsilon^n-1=0$, $\forany 0<m<n, \epsilon^m-1\neq 0$. Suppose $\mathrm{Irr}(\beta,F)=\prod^r_{i=1}(x-\beta_i)$ with $\beta=\beta_1$, since $\overline{E}$ is a normal extension, $\beta_i\in\overline{E}$. Let $\alpha_i$ be the roots of $x^n-\beta_i$, $1\le i\le r$. Let $\alpha_1=\theta$, then
+    Since $K$ is a radical extension of $F$, there is a sequence of simple radical extensions from $F$ to $K$, index it by $m$. Attempt proof by induction on $m$. When $m=1$, since it is a splitting field of some polynomial, it is normal. Assume the proposition is true for $m-1$, then $\exist\overline{E}$ such that $E=F_{m-1}\subset\overline{E}$, and $\overline{E}$ is a normal radical extension. Since $K=F_m$ is the splitting field of $x^n-\beta\in E[x]$, $K=E(\epsilon,\theta)$, where $\theta^n-\beta=0$ and $\epsilon$ n-th primitive roots of unity. Suppose $\mathrm{Irr}(\beta,F)=\prod^r_{i=1}(x-\beta_i)$ with $\beta=\beta_1$, since $\overline{E}$ is a normal extension, $\beta_i\in\overline{E}$. Let $\alpha_i$ be the roots of $x^n-\beta_i$, $1\le i\le r$. Let $\alpha_1=\theta$, then
     $$
     K=E(\epsilon,\theta)\subset\overline{E}(\epsilon,\alpha_1,\cdots,\alpha_r)=\overline{K}
     $$
@@ -25,10 +25,51 @@
     g(x)=\prod^r_1(x^n-\beta_i)\in F[x]
     $$
     suppose $\overline{E}$ is the splitting field of $f(x)\in F[x]$. Then $\overline{K}$ is the splitting field of $f(x)g(x)$ therefore a normal extension.
-    \begin{theorem}
-        If $f(x)\in F[x]$, then $f(x)$ is solvable by radicals if $G(f,F)$ is solvable.
-    \end{theorem}
-    \begin{proof}
-        
-    \end{proof}
 \end{proof}
+\begin{theorem}
+    If $f(x)\in F[x]$, then $f(x)$ is solvable by radicals if $G(f,F)$ is solvable.
+\end{theorem}
+\begin{proof}
+    Suppose $E$ the splitting field of $f(x)\in F[x]$. Since $f(x)=0$ solvable by radicals, there exists a radical extension $K$ such that $E\subset K$. By proposition \ref{solvable-ext-wlog-normal}, $K$ can be assumed normal. Suppose the number of intermediate fields between $K$ and $F$ is $m$.
+    \par When $m=1$, $K$ is the splitting field of $x^{n_1}-a_1\in F[x]$. Suppose $n_1$-th primitive root of unity $\epsilon_1$ and $\theta_1$ such that $\theta_1^{n-1}=\beta$. Then
+    $$
+    F\subset F(\epsilon_1)\subset F(\epsilon_1,\theta_1)=K
+    $$
+    by proposition \ref{tt1} and proposition \ref{tt2}, $\mathrm{Gal}(F(\epsilon_1)/F)$ and $\mathrm{Gal}(F(\epsilon_1,\theta_1)/F(\epsilon_1))$ are abelian. By the fundemental theorem,
+    $$
+    \mathrm{Gal}(K/F)/\mathrm{Gal}(K/F(\epsilon_1))\cong\mathrm{Gal}(F(\epsilon_1)/F)
+    $$
+    therefore
+    $$
+    0\to\mathrm{Gal}(K/F(\epsilon_1))\to\mathrm{Gal}(K/F)\to\mathrm{Gal}(F(\epsilon_1)/F)\to 0
+    $$
+    $\mathrm{Gal}(K/F)$ is solvable. If $m=k-1$, since $K$ is a normal extension of $F$, $K$ is a normal extension of $F_1$. Assume $\mathrm{Gal}(K/F_1)$ is solvable. Then $\mathrm{Gal}(K/F)/\mathrm{Gal}(K/F_1)\cong\mathrm{Gal}(F_1/F)$, $\mathrm{Gal}(K/F)$ is solvable by induction on $m$.
+    \par Since $F\subset E\subset K$, and $K$, $E$ are normal extensions of $F$, by the fundemental theorem,
+    $$
+    \mathrm{Gal}(K/F)/\mathrm{Gal}(K/E)\cong\mathrm{Gal}(E/F)
+    $$
+    therefore $\mathrm{Gal}(E/F)$ is solvable.
+\end{proof}
+\begin{remark}
+    $g(x)=\sum^n_{i=1}(x-x_i)=\sum^n_{i=1}p_ix^i$ ($n\ge 4$) is unsolvable on $F(p_1,\cdots,p_n)$ since $G(g,F(p_1,\cdots,p_n))$ is isomorphic to $S_n$. Therefore for $g(x)=x^5+ax^4+bx^3+cx^2+dx+e$, the roots cannot be expressed with $a,b,c,d,e$.
+\end{remark}
+\begin{theorem}\label{reverse}
+    If $G(f,F)$ is solvable, then $f(x)$ can be solvable by radicals.
+\end{theorem}
+\begin{proof}
+    Suppose $G_0=G(f,F)$, $E$ is the splitting field of $f(x)\in F[x]$. Need to show that there exists a radical extension $K$ that contains $E$. Since $G_0$ is solvable, there is a subnormal sequence 
+    $$G_0\triangleright G_1\cdots\triangleright G_s=\{1\}$$
+    such that $G_i/G_{i+1}$ is cyclic. Therefore by the fundemental theorem,
+    $$
+    F_0=F\subset F_1\subset\cdots\subset F_s=E,\quad F_i=\mathrm{Inv}G_i
+    $$
+    attempt proof by induction on $s$. When $s=1$, $G(f,F)$ is cyclic. Suppose its degree $n$, $\epsilon$ a n-th primitive root, then $F\subset E\subset E(\epsilon)=K$. Obviously $K$ is a normal extension of $K$. Since $F\subset F(\epsilon)\subset K$, $\mathrm{Gal}(K/F(\epsilon))$ is a subgroup of $G_0$, therefore still cyclic. By proposition \ref{tt3}, $K$ is a simple radical extension of $F(\epsilon)$. Therefore $K$ is a radical extension of $F$ and $E\subset K$.
+    \par Assume it is true for $s-1$. Since $G_1\triangleleft G_0$, $F_1$ is normal over $F$ and $\mathrm{Gal}(F_1/F)$ is cyclic. Thus $F_1$ is contained in a normal radical extension $\overline{F_1}$. Suppose it is the splitting field of $g(x)\in F[x]$, $\overline{E}$ the splitting field of $g(x)f(x)$. Then $\mathrm{Gal}(\overline{E}/\overline{F_1})=H$ is a subgroup of $\mathrm{Gal}(E/F_1)$. Therefore there is a subnormal series
+    $$
+    H=H_0\ge\cdots H_{s-1}=\{1\},\quad H_i=G_{i+1}\cap H
+    $$
+    where $H_i/H_{i+1}$ is cyclic. Then there is a normal radical extension $K$ of $\overline{F_1}$. Obviously $K$ is also a normal radical extension of $F$.
+\end{proof}
+\begin{remark}
+    This showed that for $f(x)\in F[x]$, if $\mathrm{deg}f(x)\le 4$, then $f(x)=0$ is solvable by radicals.
+\end{remark}
